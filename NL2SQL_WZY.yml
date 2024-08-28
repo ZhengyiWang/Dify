@@ -1,0 +1,819 @@
+app:
+  description: ''
+  icon: 🤖
+  icon_background: null
+  mode: workflow
+  name: ' NL2SQL_WZY'
+kind: app
+version: 0.1.1
+workflow:
+  conversation_variables: []
+  environment_variables: []
+  features:
+    file_upload:
+      image:
+        enabled: false
+        number_limits: 3
+        transfer_methods:
+        - local_file
+        - remote_url
+    opening_statement: ''
+    retriever_resource:
+      enabled: false
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    suggested_questions: []
+    suggested_questions_after_answer:
+      enabled: false
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - data:
+        isInIteration: false
+        sourceType: llm
+        targetType: llm
+      id: 1722322108461-source-1722322427608-target
+      selected: false
+      source: '1722322108461'
+      sourceHandle: source
+      target: '1722322427608'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: http-request
+        targetType: llm
+      id: 1722390439365-source-1722322108461-target
+      selected: false
+      source: '1722390439365'
+      sourceHandle: source
+      target: '1722322108461'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: start
+        targetType: http-request
+      id: start-source-1722390439365-target
+      selected: false
+      source: start
+      sourceHandle: source
+      target: '1722390439365'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: llm
+        targetType: code
+      id: 1722331666307-source-1723086240282-target
+      selected: false
+      source: '1722331666307'
+      sourceHandle: source
+      target: '1723086240282'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: code
+        targetType: http-request
+      id: 1723086240282-source-1722394596350-target
+      selected: false
+      source: '1723086240282'
+      sourceHandle: source
+      target: '1722394596350'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: llm
+        targetType: if-else
+      id: 1722322427608-source-1723100866033-target
+      selected: false
+      source: '1722322427608'
+      sourceHandle: source
+      target: '1723100866033'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: if-else
+        targetType: end
+      id: 1723100866033-true-1723100942162-target
+      selected: false
+      source: '1723100866033'
+      sourceHandle: 'true'
+      target: '1723100942162'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: if-else
+        targetType: llm
+      id: 1723100866033-false-1722331666307-target
+      selected: false
+      source: '1723100866033'
+      sourceHandle: 'false'
+      target: '1722331666307'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: http-request
+        targetType: llm
+      id: 1722394596350-source-1723103626419-target
+      selected: false
+      source: '1722394596350'
+      sourceHandle: source
+      target: '1723103626419'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: llm
+        targetType: llm
+      id: 1723103626419-source-1723102042186-target
+      selected: false
+      source: '1723103626419'
+      sourceHandle: source
+      target: '1723102042186'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: llm
+        targetType: end
+      id: 1723102042186-source-1722324648858-target
+      source: '1723102042186'
+      sourceHandle: source
+      target: '1722324648858'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    nodes:
+    - data:
+        desc: 请输入需要查询的问题及相关的表
+        selected: false
+        title: START
+        type: start
+        variables:
+        - label: input
+          max_length: 256
+          options: []
+          required: true
+          type: text-input
+          variable: input
+        - label: table_name
+          max_length: 128
+          options:
+          - fund_table
+          required: true
+          type: select
+          variable: table_name
+      height: 144
+      id: start
+      position:
+        x: 30
+        y: 272
+      positionAbsolute:
+        x: 30
+        y: 272
+      selected: false
+      type: custom
+      width: 244
+    - data:
+        authorization:
+          config: null
+          type: no-auth
+        body:
+          data: ''
+          type: none
+        desc: ''
+        headers: ''
+        method: get
+        params: table_name:{{#start.table_name#}}
+        selected: false
+        timeout:
+          connect: 60
+          max_connect_timeout: 0
+          max_read_timeout: 0
+          max_write_timeout: 0
+          read: 60
+          write: 60
+        title: 获取表结构和样例数据
+        type: http-request
+        url: http://10.0.2.50:6870/table/
+        variables: []
+      height: 90
+      id: '1722390439365'
+      position:
+        x: 334
+        y: 272
+      positionAbsolute:
+        x: 334
+        y: 272
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: ''
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: qwen-max
+          provider: tongyi
+        prompt_template:
+        - id: a648a627-2d15-44a9-80f6-40c06f9ec991
+          role: system
+          text: '作为一名资深的数据分析师，您精通SQL查询及数据库结构分析。现在，请基于给定的数据库表结构定义，针对用户的具体查询需求，执行以下步骤来精确提取相关信息，只输出最终分析的结果。
+
+            '
+        - id: 47aae087-f949-4e0a-b370-4d898f6512b6
+          role: user
+          text: '​用户问题：{{#start.input#}}
+
+            表结构及样例数据: {{#1722390439365.body#}}
+
+            提示：
+
+            首先，仔细阅读并理解提供的表结构及其注释，确保对每个表的用途、包含的字段及其含义有清晰的认识。
+
+            精准识别表名与字段：根据用户查询的意图，从给定的表结构中识别出最可能包含所需信息的表，并进一步筛选出这些表中与用户问题直接相关的字段。字段名只允许从提供的表结构中提供。
+
+            评估字段相关性：深入分析每个选定字段的描述，评估它们与用户查询需求的匹配度。特别关注那些能够直接回答用户问题或作为查询关键条件的字段。
+
+            剔除非必要项：在确定了相关字段后，仔细排查并剔除那些与用户问题不直接相关或可能引入噪声的字段，确保查询结果的准确性和高效性。
+
+            整理并输出：最后，将筛选出的相关表名、字段及其描述整理成清晰、规范的示例格式，以便于后续SQL查询的编写和执行。确保输出内容既全面又简洁，能够直接指导SQL语句的构造。
+
+            如果查询需求不清晰，比如缺指标、缺查询字段的定义等，字段是否需要聚合，你需要反问。'
+        - id: 765974b0-e2e9-4f18-a7f5-e44d5e0f5271
+          role: assistant
+          text: '输出格式：
+
+            {region:用于分组,amount:用于求和,sale_date:用于过滤}
+
+            '
+        selected: false
+        title: LLM 相关字段提取
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 98
+      id: '1722322108461'
+      position:
+        x: 638
+        y: 272
+      positionAbsolute:
+        x: 638
+        y: 272
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: ''
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: qwen-max
+          provider: tongyi
+        prompt_template:
+        - id: 2b1eef6f-55b5-4ef5-9651-dcb8c7f2016d
+          role: system
+          text: 你是一个SQLite3生成器助手，你善于把自然语言转换成 SQL 查询语句，你的输出只能包含SQL语句，不包含其他内容,语句不要换行或包含其他转义符号。如果无法生成相应的SQL，则输出“No
+            valid SQL statement found.”
+        - id: c694df43-4214-4f6e-b10d-7896324a6d45
+          role: user
+          text: '请根据如下内容将用户提问转换成SQL查询语句
+
+            用户提问{{#start.input#}}
+
+            表信息 {{#start.table_name#}}
+
+            相关字段{{#1722322108461.text#}}
+
+
+            以下是转换过程中的指导原则和优化建议：
+
+            1. 确保只输出Select查询语句：这是基本的要求，我们将仅生成一个SELECT语句。
+
+            2. 使用用户提供的表名：确保在查询中使用{{#start.table_name#}}作为表名。
+
+            3. 根据相关字段组装SQL：确保在SELECT语句中正确地列出{{#1722322108461.text#}}指定的字段名，这些字段名应直接用于查询中，不做任何更改。
+
+            4. 注意日期函数的使用：如果查询涉及“今天”的日期，使用now()函数来获取当前日期。
+
+            5. 确保输出格式正确：输出的SQL查询不应包含任何XML标签或额外的文本。'
+        - id: d979ca11-061f-493e-95cf-d56bc4b9da0c
+          role: assistant
+          text: '样例输入输出
+
+            输入：
+
+            用户提问：请查询2023年每个销售区域的总销售额。
+
+            表名:  sales
+
+            相关字段 字段名: {region:用于分组, amount:用于求和, sale_date:用于过滤}
+
+
+            输出:
+
+            SELECT region, SUM(amount) AS total_sales_2023  FROM sales  WHERE YEAR(sale_date)
+            = 2023  GROUP BY region;'
+        selected: false
+        title: 大语言模型输出SQL
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 98
+      id: '1722322427608'
+      position:
+        x: 942
+        y: 272
+      positionAbsolute:
+        x: 942
+        y: 272
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        outputs:
+        - value_selector:
+          - '1723102042186'
+          - text
+          variable: SQL chart
+        - value_selector:
+          - '1723103626419'
+          - text
+          variable: text
+        selected: false
+        title: 输出SQL
+        type: end
+      height: 116
+      id: '1722324648858'
+      position:
+        x: 3070
+        y: 272
+      positionAbsolute:
+        x: 3070
+        y: 272
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: ''
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: qwen-max
+          provider: tongyi
+        prompt_template:
+        - id: 93ffbe4f-bac9-4237-9f92-b341badc56b4
+          role: system
+          text: 你是一个SQLite3审查专家，善于发现SQL中的潜在错误。你的输出只能包含SQL语句，不包含其他内容。
+        - id: 01480218-e660-40c3-bf58-bac420f80f5f
+          role: user
+          text: '请细致复审查询："{{#1722322427608.text#}}"，查找并修正潜在错误，特别关注：
+
+            1. 避免NOT IN与NULL值的组合，这可能导致意外的结果。
+
+            2. 选用UNION ALL而非UNION，如果结果集中允许重复项。
+
+            3. 精确使用BETWEEN，确保它符合闭区间需求；若需开区间，调整逻辑条件。
+
+            4. 确保谓词中的数据类型严格匹配，避免类型不一致导致的错误。
+
+            5. 正确引用所有数据库对象名称，如表名、列名，遵循数据库规范。
+
+            6, 验证函数调用时的参数数量与类型，确保准确无误。
+
+            7. 进行数据类型转换时，指定正确的目标类型。
+
+            8. 在JOIN操作中，确保连接键正确无误，符合业务逻辑和数据关系。
+
+            9. 输出的内容中部包含任何如“\n”转义字符
+
+            10.输出的内容以Select语句开头，分号结尾，不包含"\"
+
+            '
+        selected: false
+        title: SQL语法检查
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 98
+      id: '1722331666307'
+      position:
+        x: 1550
+        y: 264
+      positionAbsolute:
+        x: 1550
+        y: 264
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        authorization:
+          config: null
+          type: no-auth
+        body:
+          data: ''
+          type: none
+        desc: ''
+        headers: ''
+        method: post
+        params: sql:{{#1723086240282.result#}}
+        selected: false
+        timeout:
+          connect: 5
+          max_connect_timeout: 0
+          max_read_timeout: 0
+          max_write_timeout: 0
+          read: 5
+          write: 5
+        title: 执行SQL
+        type: http-request
+        url: http://10.0.2.50:6870/execute-sql/
+        variables: []
+      height: 106
+      id: '1722394596350'
+      position:
+        x: 2155.53331554693
+        y: 272
+      positionAbsolute:
+        x: 2155.53331554693
+        y: 272
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        author: wangzy4@xcsc.com
+        desc: ''
+        height: 125
+        selected: false
+        showAuthor: true
+        text: '{"root":{"children":[{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"为保证查询结果的准确性及sql的运行效率，建议和quickbi一样只使用单表进行查询，不进行任何join操作","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":0}],"direction":"ltr","format":"","indent":0,"type":"root","version":1}}'
+        theme: blue
+        title: ''
+        type: ''
+        width: 243
+      height: 125
+      id: '1722991815327'
+      position:
+        x: 30
+        y: 133.7709602117686
+      positionAbsolute:
+        x: 30
+        y: 133.7709602117686
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom-note
+      width: 243
+    - data:
+        author: wangzy4@xcsc.com
+        desc: ''
+        height: 369
+        selected: false
+        showAuthor: true
+        text: '{"root":{"children":[{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"对问题复杂度进行分析，避免用户提问过于复杂，过滤如包含having,
+          开窗函数，子查询等复杂的SQL语句","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":0},{"children":[],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":0},{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"目前的提示词","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":0},{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"请仔细分析用户的问题{{#start.input#}}，是否能用以下两种SQL查询结构中的任何一种来直接回答：","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":0},{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"包含聚合的查询：问题需要计算总和、平均值或其他聚合值，如SELECT
+          class_id, gender, COUNT(*) num FROM students GROUP BY class_id, gender;","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":0},{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"简单选择查询：如SELECT
+          * FROM students WHERE score >= 80;","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":0},{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"如果用户的提问符合上述任一查询结构的特征，请回答''是''；如果两者都不符合，即无法直接通过上述任一结构来回答，请回答''否''。\"","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":0},{"children":[],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":0},{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"存在较高的误判几率，暂时放弃使用","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":0},{"children":[],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":0},{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"如
+          有多少员工判断为否","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":0},{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"     员工总数判断为是","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":0}],"direction":"ltr","format":"","indent":0,"type":"root","version":1}}'
+        theme: blue
+        title: ''
+        type: ''
+        width: 463
+      height: 369
+      id: '1722992286604'
+      position:
+        x: 320.120221878185
+        y: -112.75898842316295
+      positionAbsolute:
+        x: 320.120221878185
+        y: -112.75898842316295
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom-note
+      width: 463
+    - data:
+        code: "def main(text: str) -> str:  \n    # 移除 Markdown 代码块标记  \n    text\
+          \ = re.sub(r'^```sql\\n(.*?)\\n```$', r'\\1', text, flags=re.DOTALL)  \n\
+          \      \n    # 使用正则表达式查找以 'select' 开头并以 ';' 结尾的 SQL 语句  \n    matches =\
+          \ re.findall(r'select.*?;', text, flags=re.IGNORECASE | re.DOTALL)  \n \
+          \     \n    # 如果有匹配项，则处理并返回第一个（或所有，如果需要的话）  \n    if matches:  \n      \
+          \  # 移除字符串中的 '\\n' 和其他可能的转义字符（在这个例子中，我们主要关注 '\\n'）  \n        cleaned_sql\
+          \ = matches[0].replace('\\\\n', '').replace('\\n', ' ').strip()  \n    \
+          \      \n        # 注意：这里没有自动添加别名，因为这通常需要根据上下文来决定  \n        # 如果需要，可以在这里添加额外的逻辑来修改\
+          \ SQL 语句  \n          \n        # 返回清洗后的 SQL 语句  \n        return {'result':cleaned_sql}\
+          \  \n    else:  \n        return {'result':\"No valid SQL statement found.\"\
+          \ } \n"
+        code_language: python3
+        desc: 清洗SQL
+        outputs:
+          result:
+            children: null
+            type: string
+        selected: false
+        title: SQL清理
+        type: code
+        variables:
+        - value_selector:
+          - '1722331666307'
+          - text
+          variable: text
+      height: 82
+      id: '1723086240282'
+      position:
+        x: 1852.6162597296766
+        y: 272
+      positionAbsolute:
+        x: 1852.6162597296766
+        y: 272
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        author: wangzy4@xcsc.com
+        desc: ''
+        height: 100
+        selected: false
+        showAuthor: true
+        text: '{"root":{"children":[{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"能否合并成一个agent
+          提高执行效率，准确率是否会下降（待测试）","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":0}],"direction":"ltr","format":"","indent":0,"type":"root","version":1}}'
+        theme: blue
+        title: ''
+        type: ''
+        width: 282
+      height: 100
+      id: '1723096160238'
+      position:
+        x: 1012.9440262014834
+        y: 1050.971765731938
+      positionAbsolute:
+        x: 1012.9440262014834
+        y: 1050.971765731938
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom-note
+      width: 282
+    - data:
+        cases:
+        - case_id: 'true'
+          conditions:
+          - comparison_operator: contains
+            id: abee8e4a-8426-49c9-8bfa-2fe00274b4e7
+            value: No valid SQL statement found.
+            varType: string
+            variable_selector:
+            - '1722322427608'
+            - text
+          id: 'true'
+          logical_operator: and
+        desc: ''
+        selected: false
+        title: 判断是否包含SQL
+        type: if-else
+      height: 126
+      id: '1723100866033'
+      position:
+        x: 1246
+        y: 272
+      positionAbsolute:
+        x: 1246
+        y: 272
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: 请尝试重新提问
+        outputs: []
+        selected: false
+        title: 请尝试重新提问
+        type: end
+      height: 82
+      id: '1723100942162'
+      position:
+        x: 1550
+        y: 402
+      positionAbsolute:
+        x: 1550
+        y: 402
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: ''
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: qwen-max
+          provider: tongyi
+        prompt_template:
+        - id: c4650deb-b5d7-4a45-8edb-bd75793ee958
+          role: system
+          text: 作为一名资深的数据分析师，您精通SQL查询，并生成相应的柱状图、折线图或饼图。请严格按照规则只输出相应的json文件。
+        - id: ac9e32de-7ae6-4b48-90dd-c5a134fe90fe
+          role: user
+          text: "请根据SQL语句{{#1723086240282.result#}}\nSQL结果{{#1722394596350.body#}}\n\
+            按照如下规则回答用户的问题{{#start.input#}}\n\n1. 如果查询需要表格，回答：  {\"table\": {\"columns\"\
+            : [\"列1\", \"列2\", ...], \"data\": [[值1, 值2, ...], [值1, 值2, ...], ...]}}\
+            \  \n2. 如果更适合条形图，回答：   {\"bar\": {\"columns\": [\"A\", \"B\", \"C\", ...],\
+            \ \"data\": [25, 24, 10, ...]}}  \n3. 如果更适合使用折线图，回答：   {\"line\": {\"\
+            columns\": [\"A\", \"B\", \"C\", ...], \"data\": [25, 24, 10, ...]}} \
+            \ \n    注意：我们仅支持“条形图”和“折线图”两种图表类型。  \n4. 对于不需要图表或表格的普通问题，您的回答应为： {\"answer\"\
+            : \"您的答案为\"}  \n 例如：  {\"answer\": \"订单量最高的产品是'15143Exfo'\"}  \n5. 如果答案未知或不可用，请回应：\
+            \   {\"answer\": \"我不知道。\"}  \n \n请将所有输出作为字符串返回。记得在\"columns\"列表和数据列表中的所有字符串都使用双引号括起来。\
+            \  \n 例如：{\"columns\": [\"产品\", \"订单量\"], \"data\": [[\"51993Masc\", 191],\
+            \ [\"49631Foun\", 152]]}  \n"
+        selected: true
+        title: 图表输出
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 98
+      id: '1723102042186'
+      position:
+        x: 2766
+        y: 272
+      positionAbsolute:
+        x: 2766
+        y: 272
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: ''
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: qwen-max
+          provider: tongyi
+        prompt_template:
+        - id: 5ef36788-f5ff-44a2-a2b2-afce68b6a92b
+          role: system
+          text: 作为一名资深的数据分析师，您精通SQL查询，对SQL语句及结果进行解释并生成相应的柱状图、折线图或饼图。如果查询结果需要以表格形式输出，则只展示前5行数据。
+        - id: 0f9d7123-a4f1-4916-914b-3ffb6d90f741
+          role: user
+          text: '请根据SQL语句{{#1723086240282.result#}}
+
+            SQL结果{{#1722394596350.body#}}
+
+            请输出SQL语句，解释SQL语句并回答用户的问题{{#start.input#}}'
+        selected: false
+        title: 回答问题
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 98
+      id: '1723103626419'
+      position:
+        x: 2462
+        y: 272
+      positionAbsolute:
+        x: 2462
+        y: 272
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        author: wangzy4@xcsc.com
+        desc: ''
+        height: 403
+        selected: false
+        showAuthor: true
+        text: '{"root":{"children":[{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"建议由前端完成图表生成建议大语言模型返回相应的字段后，由前端完成图表生成;","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":0},{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"内置的工具会在本地相应图标文件并返回json，无法直接在回答中生成图表","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":0},{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"{","type":"text","version":1}],"direction":null,"format":"","indent":0,"type":"paragraph","version":1,"textFormat":0},{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"  \"files\":
+          [","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":0},{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"    {","type":"text","version":1}],"direction":null,"format":"","indent":0,"type":"paragraph","version":1,"textFormat":0},{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"      \"__variant\":
+          \"FileVar\",","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":0},{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"      \"tenant_id\":
+          \"cc18be99-3c1c-40fb-99b8-828f31886680\",","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":0},{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"      \"type\":
+          \"image\",","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":0},{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"      \"transfer_method\":
+          \"tool_file\",","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":0},{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"      \"url\":
+          \"http://218.77.34.87:7850/files/tools/749224b6-cd50-4882-934b-d6a17924f3ab.png?timestamp=1723105518&nonce=8c2be29fc56e4cfa1314ad85cdd3298a&sign=cCUOOCu_i7ZK8onNEnhT0U6NYseZV7WwMU0b2EVvjo4=\",","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":0},{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"      \"remote_url\":
+          \"/files/tools/749224b6-cd50-4882-934b-d6a17924f3ab.png\",","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":0},{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"      \"related_id\":
+          \"749224b6-cd50-4882-934b-d6a17924f3ab\",","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":0},{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"      \"filename\":
+          \"749224b6-cd50-4882-934b-d6a17924f3ab.png\",","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":0},{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"      \"extension\":
+          \".png\",","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":0},{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"      \"mime_type\":
+          \"image/png\"","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":0},{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"    }","type":"text","version":1}],"direction":null,"format":"","indent":0,"type":"paragraph","version":1,"textFormat":0},{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"  ]","type":"text","version":1}],"direction":null,"format":"","indent":0,"type":"paragraph","version":1,"textFormat":0},{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"}","type":"text","version":1}],"direction":null,"format":"","indent":0,"type":"paragraph","version":1,"textFormat":0}],"direction":null,"format":"","indent":0,"type":"root","version":1}}'
+        theme: blue
+        title: ''
+        type: ''
+        width: 455
+      height: 403
+      id: '1723104397871'
+      position:
+        x: 2657.7327638587944
+        y: 415.74266788543827
+      positionAbsolute:
+        x: 2657.7327638587944
+        y: 415.74266788543827
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom-note
+      width: 455
+    - data:
+        author: wangzy4@xcsc.com
+        desc: ''
+        height: 515
+        selected: false
+        showAuthor: true
+        text: '{"root":{"children":[{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"数据如下","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":0},{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"##表Schema","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":0},{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"#fact_sales_monthly
+          销售事实表","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":0},{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"字段名,字段注释,字段类型","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":0},{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"ID,ID,int","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":0},{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"date,年月,Date","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":0},{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"product_code,产品代码,varchar(50)","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":0},{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"customer_code,客户代码,varchar(50)","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":0},{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"sold_quantity,销售数量,int","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":0},{"children":[],"direction":null,"format":"","indent":0,"type":"paragraph","version":1,"textFormat":0},{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"#dim_product
+          产品维度表","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":0},{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"字段名,字段注释,字段类型","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":0},{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"product_code,产品代码,varchar(50)","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":0},{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"division,产品线,varchar(50)","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":0},{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"segment,品类,varchar(50)","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":0},{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"category,细分品类,varchar(50)","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":0},{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"product,产品
+          ,varchar(50)","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":0},{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"variant,版本,varchar(50)","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":0},{"children":[],"direction":null,"format":"","indent":0,"type":"paragraph","version":1,"textFormat":0},{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"##样本数据","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":0},{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"#fact_sales_monthly
+          销售事实表 ","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":0},{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"\"date\",\"product_code\",\"customer_code\",\"sold_quantity\",\"fiscal_year\",\"sk_productfiscal\",\"sk_customerfiscal\",\"sk_productcost\",\"cost_year\",\"id\",\"cost_month\"","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":0},{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"\"2017-09-01\",A0118150101,\"90022083\",10,\"2018\",A01181501012018,\"900220832018\",A01181501012017,\"2017\",3,\"09\"","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":0},{"children":[],"direction":null,"format":"","indent":0,"type":"paragraph","version":1,"textFormat":0},{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"#dim_product
+          产品维度表 ","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":0},{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"\"product_code\",\"division\",\"segment\",\"category\",\"product\",\"variant\"","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":0},{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"A0320150301,P
+          & A,Peripherals,Internal HDD,AQ Zion Saga,Standard","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":0},{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"A0620150304,P
+          & A,Peripherals,Graphic Card,AQ Mforce Gen Z,Plus 1","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":0},{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"A1618150104,P
+          & A,Peripherals,MotherBoard,AQ MB Elite,Premium","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":0},{"children":[],"direction":null,"format":"","indent":0,"type":"paragraph","version":1,"textFormat":0},{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"#dim_customer
+          客户表","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":0},{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"\"customer_code\",\"customer\",\"platform\",\"channel\",\"market\",\"sub_zone\",\"region\"","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":0},{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"\"70002017\",Atliq
+          Exclusive,Brick & Mortar,Direct,India,India,APAC","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":0},{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"\"70002018\",Atliq
+          e Store,E-Commerce,Direct,India,India,APAC","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":0},{"children":[{"detail":0,"format":0,"mode":"normal","style":"","text":"\"70003181\",Atliq
+          Exclusive,Brick & Mortar,Direct,Indonesia,ROA,APAC","type":"text","version":1}],"direction":"ltr","format":"","indent":0,"type":"paragraph","version":1,"textFormat":0}],"direction":"ltr","format":"","indent":0,"type":"root","version":1}}'
+        theme: blue
+        title: ''
+        type: ''
+        width: 640
+      height: 515
+      id: '1723430144792'
+      position:
+        x: 958.5714285714287
+        y: -292.8571428571429
+      positionAbsolute:
+        x: 958.5714285714287
+        y: -292.8571428571429
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom-note
+      width: 640
+    viewport:
+      x: -494.9102606831407
+      y: 398.49967777339265
+      zoom: 0.5386525270563026

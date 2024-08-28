@@ -1,0 +1,1724 @@
+app:
+  description: ''
+  icon: 🤖
+  icon_background: '#FFEAD5'
+  mode: advanced-chat
+  name: 用户分析
+kind: app
+version: 0.1.1
+workflow:
+  conversation_variables:
+  - description: ''
+    id: d2ddb739-77fc-4218-85c9-6a3c1fa0917a
+    name: conv_id
+    value: []
+    value_type: array[string]
+  - description: ''
+    id: a81a863c-03d9-4e2d-8521-f786104da382
+    name: ts_code
+    value: ''
+    value_type: string
+  - description: ''
+    id: 279a676c-6350-499d-9672-ec9784a3290b
+    name: strats_id
+    value: ''
+    value_type: string
+  - description: ''
+    id: f4692dd2-44b6-4419-9e6d-2e3fd1efda9b
+    name: user_id
+    value: ''
+    value_type: string
+  - description: ''
+    id: 0ab50fee-55eb-4eb0-8c84-2d1f1c4f1b1a
+    name: stock_id
+    value: ''
+    value_type: string
+  environment_variables: []
+  features:
+    file_upload:
+      image:
+        enabled: false
+        number_limits: 3
+        transfer_methods:
+        - local_file
+        - remote_url
+    opening_statement: ''
+    retriever_resource:
+      enabled: true
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    suggested_questions: []
+    suggested_questions_after_answer:
+      enabled: false
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - data:
+        isInIteration: false
+        sourceType: llm
+        targetType: tool
+      id: 1723771723353-source-1723789148750-target
+      selected: false
+      source: '1723771723353'
+      sourceHandle: source
+      target: '1723789148750'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: start
+        targetType: question-classifier
+      id: 1723769606603-source-1723798606207-target
+      selected: false
+      source: '1723769606603'
+      sourceHandle: source
+      target: '1723798606207'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: llm
+        targetType: answer
+      id: 1723798913328-source-1723798969767-target
+      selected: false
+      source: '1723798913328'
+      sourceHandle: source
+      target: '1723798969767'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: llm
+        targetType: llm
+      id: llm-source-17237972326250-target
+      selected: false
+      source: llm
+      sourceHandle: source
+      target: '17237972326250'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: llm
+        targetType: tool
+      id: 1723801029796-source-1723801610784-target
+      source: '1723801029796'
+      sourceHandle: source
+      target: '1723801610784'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: tool
+        targetType: code
+      id: 1723804996991-source-1723805737414-target
+      source: '1723804996991'
+      sourceHandle: source
+      target: '1723805737414'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: code
+        targetType: answer
+      id: 1723805737414-source-1723799352247-target
+      source: '1723805737414'
+      sourceHandle: source
+      target: '1723799352247'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: assigner
+        targetType: llm
+      id: 1724030206472-source-1723771723353-target
+      source: '1724030206472'
+      sourceHandle: source
+      target: '1723771723353'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: assigner
+        targetType: llm
+      id: 1724030221343-source-1723779172536-target
+      source: '1724030221343'
+      sourceHandle: source
+      target: '1723779172536'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: tool
+        targetType: assigner
+      id: 1723786011450-source-1724030672645-target
+      source: '1723786011450'
+      sourceHandle: source
+      target: '1724030672645'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: assigner
+        targetType: llm
+      id: 1724030672645-source-1723798913328-target
+      source: '1724030672645'
+      sourceHandle: source
+      target: '1723798913328'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: assigner
+        targetType: llm
+      id: 1724030768378-source-1723801029796-target
+      source: '1724030768378'
+      sourceHandle: source
+      target: '1723801029796'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: tool
+        targetType: llm
+      id: 1723789148750-source-1723798758366-target
+      source: '1723789148750'
+      sourceHandle: source
+      target: '1723798758366'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: llm
+        targetType: assigner
+      id: 1723798758366-source-1724031006456-target
+      source: '1723798758366'
+      sourceHandle: source
+      target: '1724031006456'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: assigner
+        targetType: answer
+      id: 1724031006456-source-1723798864791-target
+      source: '1724031006456'
+      sourceHandle: source
+      target: '1723798864791'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: llm
+        targetType: parameter-extractor
+      id: 1723801465402-source-1724031596865-target
+      source: '1723801465402'
+      sourceHandle: source
+      target: '1724031596865'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: parameter-extractor
+        targetType: assigner
+      id: 1724031596865-source-1724031601959-target
+      source: '1724031596865'
+      sourceHandle: source
+      target: '1724031601959'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: assigner
+        targetType: answer
+      id: 1724031601959-source-1723801749093-target
+      source: '1724031601959'
+      sourceHandle: source
+      target: '1723801749093'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: tool
+        targetType: llm
+      id: 1723801610784-source-1723801465402-target
+      source: '1723801610784'
+      sourceHandle: source
+      target: '1723801465402'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: tool
+        targetType: parameter-extractor
+      id: 1724031979405-source-1724032362716-target
+      source: '1724031979405'
+      sourceHandle: source
+      target: '1724032362716'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: parameter-extractor
+        targetType: tool
+      id: 1724032362716-source-1723804996991-target
+      source: '1724032362716'
+      sourceHandle: source
+      target: '1723804996991'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: llm
+        targetType: assigner
+      id: 1723779172536-source-1724032466514-target
+      source: '1723779172536'
+      sourceHandle: source
+      target: '1724032466514'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: assigner
+        targetType: tool
+      id: 1724032466514-source-1723786011450-target
+      source: '1724032466514'
+      sourceHandle: source
+      target: '1723786011450'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: question-classifier
+        targetType: assigner
+      id: 1723798606207-1-1724030206472-target
+      source: '1723798606207'
+      sourceHandle: '1'
+      target: '1724030206472'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: question-classifier
+        targetType: assigner
+      id: 1723798606207-2-1724030221343-target
+      source: '1723798606207'
+      sourceHandle: '2'
+      target: '1724030221343'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: question-classifier
+        targetType: assigner
+      id: 1723798606207-1723798634824-1724030768378-target
+      source: '1723798606207'
+      sourceHandle: '1723798634824'
+      target: '1724030768378'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: question-classifier
+        targetType: assigner
+      id: 1723798606207-1723798669902-1724030785873-target
+      source: '1723798606207'
+      sourceHandle: '1723798669902'
+      target: '1724030785873'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: llm
+        targetType: tool
+      id: 17237972326250-source-1724031979405-target
+      source: '17237972326250'
+      sourceHandle: source
+      target: '1724031979405'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: question-classifier
+        targetType: tool
+      id: 1723798606207-1724037105852-1724037127861-target
+      source: '1723798606207'
+      sourceHandle: '1724037105852'
+      target: '1724037127861'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: tool
+        targetType: code
+      id: 1724037127861-source-1724037289259-target
+      source: '1724037127861'
+      sourceHandle: source
+      target: '1724037289259'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: code
+        targetType: answer
+      id: 1724037289259-source-1724037192909-target
+      source: '1724037289259'
+      sourceHandle: source
+      target: '1724037192909'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: assigner
+        targetType: if-else
+      id: 1724030785873-source-1724047139963-target
+      source: '1724030785873'
+      sourceHandle: source
+      target: '1724047139963'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: if-else
+        targetType: llm
+      id: 1724047139963-true-llm-target
+      source: '1724047139963'
+      sourceHandle: 'true'
+      target: llm
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: if-else
+        targetType: llm
+      id: 1724047139963-false-1724047164267-target
+      source: '1724047139963'
+      sourceHandle: 'false'
+      target: '1724047164267'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: llm
+        targetType: answer
+      id: 1724047164267-source-1724047155251-target
+      source: '1724047164267'
+      sourceHandle: source
+      target: '1724047155251'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    nodes:
+    - data:
+        desc: ''
+        selected: false
+        title: 开始
+        type: start
+        variables: []
+      height: 54
+      id: '1723769606603'
+      position:
+        x: 30
+        y: 332
+      positionAbsolute:
+        x: 30
+        y: 332
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        context:
+          enabled: true
+          variable_selector:
+          - sys
+          - query
+        desc: ''
+        memory:
+          role_prefix:
+            assistant: ''
+            user: ''
+          window:
+            enabled: true
+            size: 10
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: spark-3.5
+          provider: spark
+        prompt_template:
+        - id: d0ea1df7-5df4-4660-b7b7-956e6b37a41e
+          role: system
+          text: '```xml
+
+            <prompt>
+
+            你的任务是根据上下文和客户信息，和股票信息数据来判断用户的画像，你要分析数据中所体现的用户的风险承受能力，期望的交易频率，可接受的最大交易波动，和最大回撤度。你需要根据客户信息和他的股票信息做出判断，并输出次内容。
+
+            对话历史处：{{#conversation.conv_id#}}
+
+            问题上下文：{{#context#}}
+
+            股票信息：{{#conversation.stock_id#}}
+
+            除了画像之外，不需要输出画像分析和推导的过程。
+
+            </prompt>
+
+            ```
+
+            '
+        - id: d52ec9b7-1201-435d-a3bd-1cff81d43e27
+          role: user
+          text: "```xml\n<instructions>\n  <step>首先，仔细审查提供的用户信息与股票交易数据，确保理解每位客户的个人概况及其在股市中的行为模式。</step>\n\
+            \  <step>接下来，评估用户的‘风险承受能力’。这需要你分析客户的资产配置、历史投资选择及可能的公开声明关于风险偏好的信息。如果用户倾向于投资高波动性股票或频繁交易，可推断其风险承受能力较高。</step>\n\
+            \  <step>分析‘期望的交易频率’。通过观察用户过去一段时间内的交易记录，识别交易的密集程度。频繁的买卖操作表明用户期望较高的交易频率。</step>\n\
+            \  <step>确定用户的‘可接受的最大交易波动’。查看用户持有的股票历史价格波动情况，结合用户在这些波动期间的行为反应，推断其对市场波动的容忍度。</step>\n\
+            \  <step>评估‘最大回撤度’，即用户能容忍的投资组合价值从最高点下降的最大百分比。分析用户在市场回调期间的行为，特别是是否进行了减仓或继续持有，以判断其对最大回撤的接受程度。</step>\n\
+            \  <step>综合以上分析，构建用户的画像概述。确保概述仅包含用户的‘风险承受能力’、‘期望的交易频率’、‘可接受的最大交易波动’和‘最大回撤度’，并直接以文本形式输出结果，避免使用XML标签或其他技术性表述。除了画像之外，不需要输出画像分析和推导的过程。</step>\n\
+            </instructions>\n\n<examples>\n  <example>\n    <input>用户A，45岁，投资组合主要由科技股构成，过去一年内进行了20次交易，大部分交易集中在市场波动较大时期。</input>\n\
+            \    <output>用户A展现出了中等到高的风险承受能力，期望的交易频率为中等，可接受较大的交易波动，最大回撤度约为20%。</output>\n\
+            \  </example>\n  <examples>\n```"
+        selected: false
+        title: 客户画像分析
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 98
+      id: llm
+      position:
+        x: 1546
+        y: 848
+      positionAbsolute:
+        x: 1546
+        y: 848
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        context:
+          enabled: true
+          variable_selector:
+          - sys
+          - query
+        desc: ''
+        memory:
+          query_prompt_template: ''
+          role_prefix:
+            assistant: ''
+            user: ''
+          window:
+            enabled: true
+            size: 50
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: spark-3.5
+          provider: spark
+        prompt_template:
+        - id: 21296e7c-19eb-4a87-99f4-7b2693799c73
+          role: system
+          text: "```xml\n  <description>你的任务是根据输入的上下文来寻找客户的姓名，并只输出你找到的姓名。如果文中没有明确提及客户的姓名，则应输出：“无法定位客户”。请确保输出结果不包含任何XML标签。</description>\n\
+            ```\n "
+        - id: 755ec5df-9f06-4fd7-8fca-f73ac511614a
+          role: user
+          text: "```xml \n<instructions>\n    1. 仔细阅读提供的上下文内容，其目的是为了从中抽取出客户的姓名信息。上下文：{{#context#}}\n\
+            \    2. 注意识别可能表示人名的词汇组合，这些通常由一个或多个汉字组成，且在文本中可能以全名、姓氏加先生/女士等形式出现。\n   \
+            \ 3. 在文本中搜索常见的称谓如“先生”、“女士”、“小姐”等，这些往往紧跟着客户的姓名，可以作为寻找姓名的线索。\n    4. 如果发现明确的姓名信息，请直接输出该姓名，不要包含任何额外的文字或标点符号。\n\
+            \    5. 若经过全面检查，仍无法在文本中定位到确切的客户姓名，则应输出：“无法定位客户”，同样不需添加任何其他内容或格式。\n  </instructions>\n\
+            \n  <examples>\n    <example>\n      <context>尊敬的张三先生，您的订单已处理完成。</context>\n\
+            \      <output>张三</output>\n    </example>\n    <example>\n      <context>感谢李四女士对我们服务的评价，我们会继续努力。</context>\n\
+            \      <output>李四</output>\n    </example>\n  </examples>\n```"
+        selected: false
+        title: 名字提取
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 98
+      id: '1723771723353'
+      position:
+        x: 1246
+        y: 332
+      positionAbsolute:
+        x: 1246
+        y: 332
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        context:
+          enabled: true
+          variable_selector:
+          - sys
+          - query
+        desc: ''
+        memory:
+          query_prompt_template: ''
+          role_prefix:
+            assistant: ''
+            user: ''
+          window:
+            enabled: true
+            size: 50
+        model:
+          completion_params:
+            max_tokens: 2000
+            repetition_penalty: 1.1
+            seed: 1234
+            temperature: 0.7
+          mode: chat
+          name: qwen-max
+          provider: tongyi
+        prompt_template:
+        - id: 316baf25-2b8b-4458-8e60-0252523dd64c
+          role: system
+          text: '```xml
+
+            <task_description>
+
+            你的任务是精准地从给定的文本中抽取出股票信息。当股票代码以“000001.SZ”这样的格式直接出现时，你的输出应直接为该股票代码。请确保在所有情况下，输出结果不包含任何XML标签或者“输出”字样，并且对于股票名称的处理要保持一致性和准确性。
+
+            </task_description>
+
+            ```
+
+            '
+        - id: 886b89b4-314e-4d14-a0f9-ff5e4c0a1788
+          role: user
+          text: "```xml\n<instructions>\n为了高效完成此任务，请遵循以下步骤：\n1. **分析输入文本**：仔细阅读并理解提供的文本内容，寻找与股票相关的提及。输入文本上下文：{{#context#}}\n\
+            2. **识别股票信息**：判断股票是通过代码（如“000001.SZ”）还是名称被提及。\n   - 如遇股票代码，直接确认其格式正确无误后作为输出。\n\
+            \   - 若股票以名称形式出现，构造询问股票代码的语句，确保股票名称被正确引用。\n3. **格式化输出**：确保输出结果不含XML标签，且对于股票名称的引用使用了正确的中文引号（‘’）。\n\
+            4. **验证准确性**：在输出前，再次检查是否准确无误地遵循了上述指导原则。\n\n记住，无论股票信息如何呈现，你的最终产出都需清晰、准确且符合指定格式。\n\
+            </instructions>\n\n<examples>\n例1：\n<输入>：最近，我发现000001.SZ的走势很值得关注。\n<输出>：000001.SZ\n\
+            </examples>\n```"
+        selected: false
+        title: 提取股票代码
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 98
+      id: '1723779172536'
+      position:
+        x: 1246
+        y: 504
+      positionAbsolute:
+        x: 1246
+        y: 504
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        provider_id: d5de4ba5-7654-4334-bee9-6e3e86d919a9
+        provider_name: StockInfo
+        provider_type: api
+        selected: false
+        title: 股票画像
+        tool_configurations: {}
+        tool_label: queryStock
+        tool_name: queryStock
+        tool_parameters:
+          query:
+            type: mixed
+            value: select * from stock_info where ts_code = '{{#1723779172536.text#}}';
+        type: tool
+      height: 54
+      id: '1723786011450'
+      position:
+        x: 1854
+        y: 526
+      positionAbsolute:
+        x: 1854
+        y: 526
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        provider_id: d5de4ba5-7654-4334-bee9-6e3e86d919a9
+        provider_name: StockInfo
+        provider_type: api
+        selected: false
+        title: 提取用户画像信息
+        tool_configurations: {}
+        tool_label: queryStock
+        tool_name: queryStock
+        tool_parameters:
+          query:
+            type: mixed
+            value: 'select * from customerdata where 姓名 = ''{{#1723771723353.text#}}'';    '
+        type: tool
+      height: 54
+      id: '1723789148750'
+      position:
+        x: 1550
+        y: 332
+      positionAbsolute:
+        x: 1550
+        y: 332
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        context:
+          enabled: true
+          variable_selector:
+          - llm
+          - text
+        desc: ''
+        memory:
+          query_prompt_template: ''
+          role_prefix:
+            assistant: ''
+            user: ''
+          window:
+            enabled: true
+            size: 50
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: spark-3.5
+          provider: spark
+        prompt_template:
+        - id: 9cf4fad0-46ad-4c13-8a6f-b6c830758268
+          role: system
+          text: "```xml\n  <description>\n    你的任务是为用户匹配最适合的股票交易策略，依据用户的特定需求与偏好进行精准推荐。作为一位卓越的SQL结构化数据分析师，你将分析用户信息并结合请求的具体情境来决定最合适的策略。你可以选择的策略处于策略信息中，以sql格式呈现。请分析策略信息再给出答案。例如，若用户倾向于低频交易，则应推荐中低交易频率的策略。完成匹配后，需输出策略名称及推荐理由。不要以一个投顾的身份去输出内容，你只需要选择给你的策略信息并将其输出。\n\
+            \  </description>\n```\n"
+        - id: a05af576-3694-4521-9a2a-c2e5a459cc5b
+          role: user
+          text: "```xml\n  <instructions>\n    1. **分析用户需求**: 首先，仔细审查用户提供的信息，特别是关于其期望的交易频率、风险承受能力、投资期限等关键要素。\n\
+            客户信息：{{#conversation.user_id#}}\n对话上下文：{{#conversation.conv_id#}}\n问题上下文：{{#context#}}\n\
+            \n    2. **筛选策略**: 根据用户需求，在数据库中筛选出符合标准的交易策略。如低频交易需求对应查找中低交易频率的策略。\n\n\
+            \    3. **评估信息率**: 当用户需求不具体时，以信息率为基准，优先推荐那些历史表现中信息量大、收益潜力高的策略。\n    4.\
+            \ **综合考量**: 若有多个策略同时满足条件，需进一步比较它们的风险调整回报率、历史业绩稳定性等因素，选择最优策略。信息率大的策略优先。\n\
+            \    5. **输出结果**: 确定最终推荐策略后，输出策略的正式名称，并简要阐述推荐该策略的具体理由，确保用户能清晰理解推荐背后的逻辑。在输出理由的时候，不要输出sql格式中的具体数据。\n\
+            \    6. **格式提醒**: 输出内容不应包含任何XML标签，直接提供策略名称与推荐理由即可。\n  </instructions>\n\
+            \n  <examples>\n    <example>\n      输入: 用户希望进行长期投资，偏好低风险，对交易频率无特别要求。\n\
+            \      输出: 策略名称 - \"价值投资长线策略\"，理由 - \"鉴于您倾向于长期投资且偏好低风险，此策略通过精选具有稳定增长潜力的股票，适合低频交易，能有效降低市场波动带来的风险，符合您的投资目标。\"\
+            \n    </example>\n    \n    <example>\n      输入: 用户寻求高风险高回报，偏好高频交易，有较强市场分析能力。\n\
+            \      输出: 策略名称 - \"日内交易高频策略\"，理由 - \"考虑到您追求高风险高回报并擅长市场分析，此策略利用短期价格波动进行频繁交易，旨在捕捉快速盈利机会，与您的交易风格和风险偏好高度匹配。\"\
+            \n    </example>\n```"
+        - id: deb9e034-0a03-4365-affc-cd4be71126c0
+          role: assistant
+          text: ''
+        selected: false
+        title: LLM 5 (1)
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 98
+      id: '17237972326250'
+      position:
+        x: 1850
+        y: 826
+      positionAbsolute:
+        x: 1850
+        y: 826
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        classes:
+        - id: '1'
+          name: 用户画像提取
+        - id: '2'
+          name: 股票画像提取
+        - id: '1723798634824'
+          name: 股票交易策略画像提取
+        - id: '1723798669902'
+          name: 同意执行策略回测来看效果
+        - id: '1724037105852'
+          name: 股票如何
+        desc: ''
+        instruction: ''
+        instructions: ''
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: spark-3.5
+          provider: spark
+        query_variable_selector:
+        - '1723769606603'
+        - sys.query
+        selected: false
+        title: 问题分类器 2
+        topics: []
+        type: question-classifier
+      height: 304
+      id: '1723798606207'
+      position:
+        x: 462.57142857142856
+        y: 389.1428571428572
+      positionAbsolute:
+        x: 462.57142857142856
+        y: 389.1428571428572
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        context:
+          enabled: true
+          variable_selector:
+          - sys
+          - query
+        desc: ''
+        memory:
+          query_prompt_template: ''
+          role_prefix:
+            assistant: ''
+            user: ''
+          window:
+            enabled: true
+            size: 50
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: spark-3.5
+          provider: spark
+        prompt_template:
+        - id: ea583076-db9e-453e-9a4e-f42f823f2390
+          role: system
+          text: "```xml\n<prompt>\n一句话概括总结返回的数据，对客户表示关心。根据调取到的用户信息回应用户。同时回复客户“那您股票都选了哪些呢？效果如何？”\n\
+            </prompt>\n \n```"
+        - id: 646f928e-e332-44e8-9efe-0a6460ce11ee
+          role: user
+          text: " <instructions>\n    1. 首先，仔细分析提供的数据摘要，确保理解了数据的核心要点。数据摘要应为一句简练的话，概括了关键信息。你需要分析上下文和客户画像。\n\
+            上下文：{{#context#}}\n客户画像：{{#1723789148750.text#}}\n    2. 在表达中体现出对客户的关怀之情，可以使用温和的语气和关切的词汇，让客户感受到个性化与被重视。\n\
+            \    3. 紧接着，自然过渡到询问客户的股票选择情况，用语要友好且带有轻微的好奇心，旨在鼓励客户分享他们的投资经验。\n    4. 最后，询问客户投资的效果，显示出你对他们投资成果的兴趣，同时保持对话的开放性，以便根据客户的回答进一步交流。一定要问关于用户的股票选择。\n\
+            \    5. 确保输出内容不含任何XML标签，直接呈现完整的、自然语言的句子给客户。\n  </instructions>\n\n  <examples>\n\
+            \    <example>\n      输入数据摘要: \"近期股市整体呈上涨趋势，科技股表现尤为突出。\"\n      输出示例:\
+            \ \"了解到最近股市大环境不错，特别是科技股表现抢眼，真是让人振奋的消息呢！那您股票都选了哪些呢？效果如何？\"\n    </example>\n\
+            \    \n    <example>\n      输入数据摘要: \"受国际油价影响，能源板块本周有较大波动。\"\n      输出示例:\
+            \ \"看来国际油价的变动给能源板块带来了不少波澜，这周对投资者来说挺考验心态的。您在能源板块有没有布局？感受如何呀？\"\n    </example>\n\
+            \    \n    <example>\n      输入数据摘要: \"随着经济复苏步伐加快，银行股展现出稳定的增长态势。\"\n  \
+            \    输出示例: \"经济回暖的步伐加快，银行股作为稳定增长的代表，吸引了许多目光。不知道您有没有关注这块领域？您的选择带来了怎样的成效呢？\"\
+            \n    </example>\n  </examples>\n  \n  <reminders>\n    - 保持语言的亲切与专业并重，确保客户感到舒适并愿意分享。\n\
+            \    - 根据数据摘要灵活调整回应的内容，使之紧密相关，体现对话的连贯性。\n    - 在询问时保持礼貌和尊重，避免给客户带来压力感。\n\
+            \  </reminders>"
+        selected: false
+        title: 用户画像回复
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 98
+      id: '1723798758366'
+      position:
+        x: 1854
+        y: 332
+      positionAbsolute:
+        x: 1854
+        y: 332
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        answer: '{{#1723798758366.text#}}'
+        desc: ''
+        selected: false
+        title: 直接回复 3
+        type: answer
+        variables: []
+      height: 107
+      id: '1723798864791'
+      position:
+        x: 2462
+        y: 332
+      positionAbsolute:
+        x: 2462
+        y: 332
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        context:
+          enabled: true
+          variable_selector:
+          - sys
+          - query
+        desc: ''
+        memory:
+          query_prompt_template: ''
+          role_prefix:
+            assistant: ''
+            user: ''
+          window:
+            enabled: true
+            size: 50
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: spark-3.5
+          provider: spark
+        prompt_template:
+        - id: 31c5ae08-7bd4-4d28-b4aa-1f3c09c70b8c
+          role: system
+          text: "```xml\n  <description>\n    在此任务中，您的目标是总结用户提供的一系列股票数据信息，并进一步询问用户的交易方式及是否运用了特定策略。请确保在回复中体现出对用户所提供股票信息的理解，并自然过渡到询问其交易策略，以促进深入交流。\n\
+            \  </description>\n\n  "
+        - id: 86b7d898-e712-4d0f-a31a-11c2ca0c2546
+          role: user
+          text: "<instructions>\n    1. **理解输入信息**：首先，仔细审查用户提供的股票数据。这通常包括股票代码、持有数量、购买价格等关键信息。确保您对每只股票的基本概况有清晰的认识。用户会从上下文中透露他的股票信息，也会从股票画像方面展示这些信息。请综合他们再输出。\n\
+            上下文：{{#context#}}\n股票画像：{{#1723786011450.text#}}\n客户画像：{{#conversation.conv_id#}}\n\
+            \n\n    2. **总结股票信息**：基于收集到的数据，简要总结用户的投资组合情况。提及具体的股票名称或代码（无需实际数值），并概括性地描述其投资分布，如“您似乎在科技和能源板块都有涉足”。\n\
+            \n    3. **过渡至交易策略的询问**：在总结之后，用友好且好奇的语气询问用户的交易习惯和策略。确保提问既专业又易于理解，例如：“那您在管理这些多样化的股票时，采取了哪些交易策略呢？是否有遵循特定的市场分析方法或是依赖某些工具辅助决策？”\n\
+            \n    4. **强调互动性**：在结尾处，可以暗示期待用户的详细分享，增强对话的互动性，比如：“非常期待能听到您的交易智慧，或许我们还能从中相互学习一二！”\n\
+            \n    5. **输出格式注意**：确保回复中不包含任何XML标签，直接呈现为自然语言文本，以便于用户阅读和理解。\n  </instructions>\n\
+            \n    <example>\n      <input>\n        用户提供：持有AAPL 100股，购入价$150；MSFT\
+            \ 50股，购入价$300。\n      </input>\n      <output>\n        您的投资组合涵盖了科技巨头AAPL和MSFT，看来您对科技行业颇有信心。在管理这些优质资产时，您是否有一套独特的交易策略或分析方法呢？比如说，您是更倾向于长期持有还是频繁交易？期待听听您的见解！\n\
+            \      </output>\n    </example>\n\n        "
+        selected: false
+        title: 股票画像回复
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 98
+      id: '1723798913328'
+      position:
+        x: 2462
+        y: 508.5
+      positionAbsolute:
+        x: 2462
+        y: 508.5
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        answer: '{{#1723798913328.text#}}'
+        desc: ''
+        selected: false
+        title: 直接回复 4
+        type: answer
+        variables: []
+      height: 107
+      id: '1723798969767'
+      position:
+        x: 2766
+        y: 504
+      positionAbsolute:
+        x: 2766
+        y: 504
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        answer: '{{#1723805737414.result#}}'
+        desc: ''
+        selected: false
+        title: 直接回复 3
+        type: answer
+        variables: []
+      height: 107
+      id: '1723799352247'
+      position:
+        x: 3978
+        y: 848
+      positionAbsolute:
+        x: 3978
+        y: 848
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        context:
+          enabled: true
+          variable_selector:
+          - sys
+          - query
+        desc: ''
+        memory:
+          query_prompt_template: ''
+          role_prefix:
+            assistant: ''
+            user: ''
+          window:
+            enabled: true
+            size: 50
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: qwen-max
+          provider: tongyi
+        prompt_template:
+        - id: c9f1c655-b549-4f06-86ef-bdac5d3e020c
+          role: system
+          text: '```xml
+
+            <task_definition>
+
+            你的任务是综合分析上下文与客户信息，以及股票交易数据，以描绘用户的详细投资画像。这包括评估用户的风险承受等级、期望的交易活跃度、可容忍的最大收益波动范围，以及在投资过程中能接受的最大资金回撤幅度。你应该依据提供的客户背景资料和其股票交易记录，进行细致分析并形成结论。
+
+            你要分析的上下文处于：{{#context#}}中
+
+            客户信息为：{{#conversation.user_id#}}
+
+
+            除了画像之外，不需要输出画像分析和推导的过程。不要以一个投顾的身份去输出内容，你只需要选择给你的策略信息并将其输出。
+
+            </task_definition>
+
+            ```'
+        - id: 838ba604-71cf-4fb3-9b37-572248431aaf
+          role: user
+          text: "<instructions>\n请遵循以下步骤来完成用户投资画像的构建任务：\n\n1. **风险承受能力分析**：\n   -\
+            \ 首先，审查客户的年龄、职业稳定性、收入水平及已有投资组合分布等信息，以此为依据初步判断其可能的风险偏好。\n   - 分析股票交易记录中的投资选择（如偏好高风险的科技股还是稳健的蓝筹股）、持仓时间及交易频率，进一步细化风险承受等级。\n\
+            \n2. **期望交易频率评估**：\n   - 通过客户历史交易记录，计算平均交易间隔天数，识别其交易习惯是倾向于频繁交易还是长期持有。\n\
+            \   - 结合客户访谈或问卷反馈中关于理想的投资周期描述，综合确定其期望的交易频率。\n\n3. **最大交易波动容忍度分析**：\n \
+            \  - 观察客户账户的历史收益率波动情况，特别是极端市场条件下的表现，以评估其对投资价值波动的容忍度。\n   - 考虑客户在面对投资亏损时的态度和行为反应，结合其口头表达的容忍界限，界定可接受的最大收益波动范围。\n\
+            \n4. **最大回撤度考量**：\n   - 计算客户投资组合的历史最大回撤值，并与客户在访谈中提及的可接受损失比例进行对比。\n   -\
+            \ 分析客户在经历较大资金回撤后的应对策略（如是否加仓、减仓或保持不变），以更准确地界定其心理上可接受的最大回撤度。\n\n最后，确保所有分析结果均以清晰、非技术性的语言表述，直接输出用户的画像概述，不包含XML标签。请直接陈述结论，例如：“该用户属于中等风险偏好者，倾向于每季度调整一次投资组合，能接受的最大年化波动率为15%，并在资金回撤达到20%时会考虑调整策略。”\n\
+            </instructions>\n\n"
+        selected: false
+        title: LLM 7
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 98
+      id: '1723801029796'
+      position:
+        x: 1246
+        y: 676
+      positionAbsolute:
+        x: 1246
+        y: 676
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        context:
+          enabled: true
+          variable_selector:
+          - '1723801029796'
+          - text
+        desc: ''
+        memory:
+          query_prompt_template: ''
+          role_prefix:
+            assistant: ''
+            user: ''
+          window:
+            enabled: true
+            size: 50
+        model:
+          completion_params:
+            repetition_penalty: 1.1
+            seed: 1234
+            temperature: 0.7
+          mode: chat
+          name: qwen-max
+          provider: tongyi
+        prompt_template:
+        - id: 2ef7b240-01d7-48d8-b3c5-8030af03e207
+          role: system
+          text: "```xml\n<prompt>\n    <description>\n        你的任务是根据用户的特定需求与偏好，精准推荐最适合的股票交易策略。作为一位专业的SQL结构化数据分析师，你需分析用户信息，并在给定的策略信息库中，利用SQL查询挑选出最合适的交易策略。请确保输出结果直接提供策略详情，且不包含任何XML标签。在输出的时候，询问客户需不需要查看该策略下的效果。请分析策略信息再给出答案。例如，若用户倾向于低频交易，则应推荐中低交易频率的策略。完成匹配后，需输出策略名称及推荐理由。不要以一个投顾的身份去输出内容，你只需要选择给你的策略信息并将其输出。SQL中整数数值在1-10之间，1最小10最大。\n\
+            \    </description>\n"
+        - id: a46429f4-998d-4ba2-bb32-34b4df1c91c7
+          role: user
+          text: "\n    <instructions>\n        1. **理解用户需求**: 首先，仔细阅读用户提供的信息与偏好，这可能包括但不限于风险承受能力、投资期限、期望收益、市场经验等。\n\
+            \n你的上下文处于：{{#context#}}\n需要你筛选分析的交易策略处于：{{#1723801610784.text#}}\n对话历史上下文：{{#conversation.conv_id#}}\n\
+            用户画像：{{#conversation.user_id#}}\n\n        2. **分析策略信息**: 熟悉策略信息数据库的结构，该数据库以SQL格式存储了多种股票交易策略，每条策略记录包含策略ID、策略描述、适用市场条件、预期收益率、风险等级等关键字段。\n\
+            \n\n        3. **构建SQL查询**: 根据用户需求，设计一个或多个SQL查询语句来筛选出符合条件的策略。确保查询条件精确映射到用户的每一个关键偏好上。\n\
+            \        4. **执行查询并解析结果**: 运行SQL查询获取数据，从结果集中挑选出最符合用户需求的策略。如果有多个策略满足条件，优先考虑那些更全面满足用户偏好的策略。不要在回答中输出具体的sql中的数据，只要给出合理的理由。\n\
+            \        5. **准备输出**: 将选中的策略详情整理成易于理解的文本格式，直接列出策略名称、简要描述、预期收益范围、风险等级等核心信息，确保输出不含XML标签。不要在回答中输出具体的sql结构的数字和数据。\n\
+            \    </instructions>\n\n        <example>\n            <input>\n     \
+            \           用户A希望寻找适合中长期投资，风险偏好为中等，期望年化收益率不低于10%的策略。\n            </input>\n\
+            \            <output>\n                根据您的需求，推荐“价值投资策略”。该策略适用于中长期投资，风险等级为中等，历史数据显示平均年化收益率约为12%-15%。\n\
+            \            </output>\n        </example>\n\n"
+        selected: false
+        title: 策略匹配
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 98
+      id: '1723801465402'
+      position:
+        x: 1854
+        y: 676
+      positionAbsolute:
+        x: 1854
+        y: 676
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        provider_id: d5de4ba5-7654-4334-bee9-6e3e86d919a9
+        provider_name: StockInfo
+        provider_type: api
+        selected: false
+        title: 策略调取
+        tool_configurations: {}
+        tool_label: queryStock
+        tool_name: queryStock
+        tool_parameters:
+          query:
+            type: mixed
+            value: select * from strats;
+        type: tool
+      height: 54
+      id: '1723801610784'
+      position:
+        x: 1550
+        y: 676
+      positionAbsolute:
+        x: 1550
+        y: 676
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        answer: '{{#1723801465402.text#}}'
+        desc: ''
+        selected: false
+        title: 直接回复 4
+        type: answer
+        variables: []
+      height: 107
+      id: '1723801749093'
+      position:
+        x: 2766
+        y: 676
+      positionAbsolute:
+        x: 2766
+        y: 676
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        provider_id: 9f0c4c18-ec4b-480f-953f-d05ba7641fc5
+        provider_name: run_backTrade
+        provider_type: workflow
+        selected: false
+        title: run_backTrade
+        tool_configurations: {}
+        tool_label: run_backTrade
+        tool_name: run_backTrade
+        tool_parameters:
+          end_date:
+            type: mixed
+            value: '20210101'
+          start_date:
+            type: mixed
+            value: '20191231'
+          strategy:
+            type: mixed
+            value: '{{#1724032362716.stratcode#}}'
+          strategy_params:
+            type: mixed
+            value: ''
+          ticker_symbol:
+            type: mixed
+            value: '{{#conversation.ts_code#}}'
+        type: tool
+      height: 54
+      id: '1723804996991'
+      position:
+        x: 3370
+        y: 848
+      positionAbsolute:
+        x: 3370
+        y: 848
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        code: "\ndef main(arg1:str) -> dict:\n    import json\n    arg1 = json.loads(arg1)['text']\n\
+          \    return {\n        \"result\": arg1 \n    }\n"
+        code_language: python3
+        desc: ''
+        outputs:
+          result:
+            children: null
+            type: string
+        selected: false
+        title: 代码执行
+        type: code
+        variables:
+        - value_selector:
+          - '1723804996991'
+          - text
+          variable: arg1
+      height: 54
+      id: '1723805737414'
+      position:
+        x: 3674
+        y: 848
+      positionAbsolute:
+        x: 3674
+        y: 848
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        assigned_variable_selector:
+        - conversation
+        - conv_id
+        desc: ''
+        input_variable_selector:
+        - sys
+        - query
+        selected: false
+        title: 记录对话
+        type: assigner
+        write_mode: append
+      height: 132
+      id: '1724030206472'
+      position:
+        x: 942
+        y: 332
+      positionAbsolute:
+        x: 942
+        y: 332
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        assigned_variable_selector:
+        - conversation
+        - conv_id
+        desc: ''
+        input_variable_selector:
+        - sys
+        - query
+        selected: false
+        title: 记录对话2
+        type: assigner
+        write_mode: append
+      height: 132
+      id: '1724030221343'
+      position:
+        x: 942
+        y: 504
+      positionAbsolute:
+        x: 942
+        y: 504
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        assigned_variable_selector:
+        - conversation
+        - stock_id
+        desc: ''
+        input_variable_selector:
+        - '1723786011450'
+        - text
+        selected: false
+        title: 记录股票信息 3
+        type: assigner
+        write_mode: over-write
+      height: 132
+      id: '1724030672645'
+      position:
+        x: 2158
+        y: 504
+      positionAbsolute:
+        x: 2158
+        y: 504
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        assigned_variable_selector:
+        - conversation
+        - conv_id
+        desc: ''
+        input_variable_selector:
+        - sys
+        - query
+        selected: false
+        title: 记录对话 4
+        type: assigner
+        write_mode: append
+      height: 132
+      id: '1724030768378'
+      position:
+        x: 942
+        y: 676
+      positionAbsolute:
+        x: 942
+        y: 676
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        assigned_variable_selector:
+        - conversation
+        - conv_id
+        desc: ''
+        input_variable_selector:
+        - sys
+        - query
+        selected: false
+        title: 记录对话 5
+        type: assigner
+        write_mode: append
+      height: 132
+      id: '1724030785873'
+      position:
+        x: 942
+        y: 848
+      positionAbsolute:
+        x: 942
+        y: 848
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        assigned_variable_selector:
+        - conversation
+        - user_id
+        desc: ''
+        input_variable_selector:
+        - '1723798758366'
+        - text
+        selected: false
+        title: 记录用户信息 6
+        type: assigner
+        write_mode: over-write
+      height: 132
+      id: '1724031006456'
+      position:
+        x: 2158
+        y: 332
+      positionAbsolute:
+        x: 2158
+        y: 332
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        instruction: 提取文本中的策略名字到strat参数里，不要提取策略或者括号等字样，只要名字
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: qwen-max
+          provider: tongyi
+        parameters:
+        - description: strat
+          name: strat
+          required: false
+          type: string
+        query:
+        - '1723801465402'
+        - text
+        reasoning_mode: prompt
+        selected: false
+        title: 策略提取
+        type: parameter-extractor
+        variables: []
+      height: 98
+      id: '1724031596865'
+      position:
+        x: 2158
+        y: 693
+      positionAbsolute:
+        x: 2158
+        y: 693
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        assigned_variable_selector:
+        - conversation
+        - strats_id
+        desc: ''
+        input_variable_selector:
+        - '1724031596865'
+        - strat
+        selected: false
+        title: 记录策略8
+        type: assigner
+        write_mode: over-write
+      height: 132
+      id: '1724031601959'
+      position:
+        x: 2462
+        y: 663.5
+      positionAbsolute:
+        x: 2462
+        y: 663.5
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        provider_id: d5de4ba5-7654-4334-bee9-6e3e86d919a9
+        provider_name: StockInfo
+        provider_type: api
+        selected: false
+        title: queryStock
+        tool_configurations: {}
+        tool_label: queryStock
+        tool_name: queryStock
+        tool_parameters:
+          query:
+            type: mixed
+            value: 'select 策略代码 from strats where 策略 = ''{{#conversation.strats_id#}}'';    '
+        type: tool
+      height: 54
+      id: '1724031979405'
+      position:
+        x: 2762
+        y: 870.6560936899375
+      positionAbsolute:
+        x: 2762
+        y: 870.6560936899375
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        instruction: 从输入中提取英文的策略代码，一般为“name:namestrategy”的格式
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: qwen-max
+          provider: tongyi
+        parameters:
+        - description: code
+          name: stratcode
+          required: false
+          type: string
+        query:
+        - '1724031979405'
+        - text
+        reasoning_mode: prompt
+        selected: false
+        title: 参数提取器 3
+        type: parameter-extractor
+        variables: []
+      height: 98
+      id: '1724032362716'
+      position:
+        x: 3066
+        y: 852.5
+      positionAbsolute:
+        x: 3066
+        y: 852.5
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        assigned_variable_selector:
+        - conversation
+        - ts_code
+        desc: ''
+        input_variable_selector:
+        - '1723779172536'
+        - text
+        selected: false
+        title: 变量赋值 8
+        type: assigner
+        write_mode: over-write
+      height: 132
+      id: '1724032466514'
+      position:
+        x: 1550
+        y: 465
+      positionAbsolute:
+        x: 1550
+        y: 465
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        provider_id: 92c0b4b2-4669-4431-be02-6bece3c4bb67
+        provider_name: 股票查询
+        provider_type: workflow
+        selected: false
+        title: 股票查询
+        tool_configurations:
+          stock: 平安银行
+        tool_label: 股票查询
+        tool_name: getstock
+        tool_parameters:
+          stock:
+            type: mixed
+            value: ''
+        type: tool
+      height: 90
+      id: '1724037127861'
+      position:
+        x: 942
+        y: 1124.4287974900972
+      positionAbsolute:
+        x: 942
+        y: 1124.4287974900972
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        answer: '{{#1724037289259.chart#}}
+
+
+          {{#1724037289259.text#}}
+
+          '
+        desc: ''
+        selected: false
+        title: 直接回复 5
+        type: answer
+        variables: []
+      height: 126
+      id: '1724037192909'
+      position:
+        x: 1871.1398781028865
+        y: 1118.1467459426265
+      positionAbsolute:
+        x: 1871.1398781028865
+        y: 1118.1467459426265
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        code: "\ndef main(arg1) -> dict:\n    import json\n    arg1 = json.loads(arg1)\n\
+          \    return {\n        \"text\":arg1['text'],\n        \"chart\":arg1['chart']\n\
+          \    }\n"
+        code_language: python3
+        desc: ''
+        outputs:
+          chart:
+            children: null
+            type: string
+          text:
+            children: null
+            type: string
+        selected: false
+        title: 代码执行 2
+        type: code
+        variables:
+        - value_selector:
+          - '1724037127861'
+          - text
+          variable: arg1
+      height: 54
+      id: '1724037289259'
+      position:
+        x: 1408.0003473628321
+        y: 1124.4287974900972
+      positionAbsolute:
+        x: 1408.0003473628321
+        y: 1124.4287974900972
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        cases:
+        - case_id: 'true'
+          conditions:
+          - comparison_operator: not empty
+            id: 76504f5f-16d1-4d00-945e-1c387a1ecb8b
+            value: ''
+            varType: string
+            variable_selector:
+            - conversation
+            - ts_code
+          id: 'true'
+          logical_operator: and
+        desc: ''
+        selected: false
+        title: 条件分支
+        type: if-else
+      height: 126
+      id: '1724047139963'
+      position:
+        x: 1246
+        y: 848
+      positionAbsolute:
+        x: 1246
+        y: 848
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        answer: ''
+        desc: ''
+        selected: false
+        title: 直接回复 6
+        type: answer
+        variables: []
+      height: 88
+      id: '1724047155251'
+      position:
+        x: 1846
+        y: 985
+      positionAbsolute:
+        x: 1846
+        y: 985
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        context:
+          enabled: true
+          variable_selector:
+          - sys
+          - query
+        desc: ''
+        memory:
+          query_prompt_template: ''
+          role_prefix:
+            assistant: ''
+            user: ''
+          window:
+            enabled: true
+            size: 50
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: qwen-max
+          provider: tongyi
+        prompt_template:
+        - id: ea569b63-a0f1-40ca-824a-199957cdbc72
+          role: system
+          text: ''
+        selected: false
+        title: LLM 9
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 98
+      id: '1724047164267'
+      position:
+        x: 1546
+        y: 985
+      positionAbsolute:
+        x: 1546
+        y: 985
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    viewport:
+      x: -2067.0970495100696
+      y: -95.56361640075329
+      zoom: 1.1203892141941802

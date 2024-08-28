@@ -1,0 +1,177 @@
+app:
+  description: ''
+  icon: 🤖
+  icon_background: '#FFEAD5'
+  mode: advanced-chat
+  name: 股票查询
+kind: app
+version: 0.1.1
+workflow:
+  conversation_variables: []
+  environment_variables: []
+  features:
+    file_upload:
+      image:
+        enabled: false
+        number_limits: 3
+        transfer_methods:
+        - local_file
+        - remote_url
+    opening_statement: ''
+    retriever_resource:
+      enabled: true
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    suggested_questions: []
+    suggested_questions_after_answer:
+      enabled: false
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - data:
+        isInIteration: false
+        sourceType: start
+        targetType: tool
+      id: 1723792494228-source-1723792616947-target
+      source: '1723792494228'
+      sourceHandle: source
+      target: '1723792616947'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: tool
+        targetType: code
+      id: 1723792616947-source-1723792960789-target
+      source: '1723792616947'
+      sourceHandle: source
+      target: '1723792960789'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: code
+        targetType: answer
+      id: 1723792960789-source-answer-target
+      source: '1723792960789'
+      sourceHandle: source
+      target: answer
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    nodes:
+    - data:
+        desc: ''
+        selected: false
+        title: 开始
+        type: start
+        variables: []
+      height: 54
+      id: '1723792494228'
+      position:
+        x: 80
+        y: 282
+      positionAbsolute:
+        x: 80
+        y: 282
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        answer: '{{#1723792960789.chart#}}
+
+          {{#1723792960789.text#}}'
+        desc: ''
+        selected: false
+        title: 直接回复
+        type: answer
+        variables: []
+      height: 126
+      id: answer
+      position:
+        x: 980
+        y: 282
+      positionAbsolute:
+        x: 980
+        y: 282
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        provider_id: 92c0b4b2-4669-4431-be02-6bece3c4bb67
+        provider_name: 股票查询
+        provider_type: workflow
+        selected: true
+        title: 股票查询
+        tool_configurations:
+          stock: 平安银行
+        tool_label: 股票查询
+        tool_name: getstock
+        tool_parameters:
+          stock:
+            type: mixed
+            value: '{{#sys.query#}}'
+        type: tool
+      height: 90
+      id: '1723792616947'
+      position:
+        x: 384
+        y: 282
+      positionAbsolute:
+        x: 384
+        y: 282
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        code: "\ndef main(arg1: str) -> dict:\n    import json\n    arg1 = json.loads(arg1)\n\
+          \    text = arg1['text']\n    chart = arg1['chart']\n    return {\n    \
+          \    \"text\":text,\n        \"chart\":chart\n    }\n"
+        code_language: python3
+        desc: ''
+        outputs:
+          chart:
+            children: null
+            type: string
+          text:
+            children: null
+            type: string
+        selected: false
+        title: 代码执行
+        type: code
+        variables:
+        - value_selector:
+          - '1723792616947'
+          - text
+          variable: arg1
+      height: 54
+      id: '1723792960789'
+      position:
+        x: 680.9382211965006
+        y: 282
+      positionAbsolute:
+        x: 680.9382211965006
+        y: 282
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    viewport:
+      x: -194.41203022503652
+      y: 107.77120573596608
+      zoom: 1.0658467360679436
