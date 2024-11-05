@@ -1,0 +1,186 @@
+app:
+  description: 多语言代码生成工具
+  icon: 🤖
+  icon_background: '#FFEAD5'
+  mode: workflow
+  name: 多语言代码生成工具
+  use_icon_as_answer_icon: false
+kind: app
+version: 0.1.2
+workflow:
+  conversation_variables: []
+  environment_variables: []
+  features:
+    file_upload:
+      allowed_file_extensions:
+      - .JPG
+      - .JPEG
+      - .PNG
+      - .GIF
+      - .WEBP
+      - .SVG
+      allowed_file_types:
+      - image
+      allowed_file_upload_methods:
+      - local_file
+      - remote_url
+      enabled: false
+      fileUploadConfig:
+        audio_file_size_limit: 50
+        batch_count_limit: 10
+        file_size_limit: 100
+        image_file_size_limit: 50
+        video_file_size_limit: 200
+      image:
+        enabled: false
+        number_limits: 3
+        transfer_methods:
+        - local_file
+        - remote_url
+      number_limits: 3
+    opening_statement: ''
+    retriever_resource:
+      enabled: true
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    suggested_questions: []
+    suggested_questions_after_answer:
+      enabled: false
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - data:
+        isInIteration: false
+        sourceType: start
+        targetType: llm
+      id: 1730790416561-source-1730790449320-target
+      source: '1730790416561'
+      sourceHandle: source
+      target: '1730790449320'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: llm
+        targetType: end
+      id: 1730790449320-source-1730790677704-target
+      source: '1730790449320'
+      sourceHandle: source
+      target: '1730790677704'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    nodes:
+    - data:
+        desc: ''
+        selected: false
+        title: 开始
+        type: start
+        variables:
+        - label: query
+          max_length: 5000
+          options: []
+          required: true
+          type: paragraph
+          variable: query
+      height: 90
+      id: '1730790416561'
+      position:
+        x: 80
+        y: 282
+      positionAbsolute:
+        x: 80
+        y: 282
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        context:
+          enabled: true
+          variable_selector:
+          - '1730790416561'
+          - query
+        desc: ''
+        model:
+          completion_params:
+            temperature: 0.3
+          mode: chat
+          name: qwen2.5-coder-instruct
+          provider: xinference
+        prompt_template:
+        - id: 41369ae0-ed53-45b8-b1e4-e9a4f2f1c4cc
+          role: system
+          text: 你是湘财证券一个乐于助人的专业代码生成助手，仔细阅读用户的输入，理解他们需要什么样的语言和代码。编写满足要求的代码，确保代码结构清晰、易于理解，并且尽可能地遵循最佳实践。在提供代码的同时，简要说明代码的主要功能以及如何使用它。
+        - id: d83171cc-c90e-4ba3-bebe-bb8fdb4857d0
+          role: user
+          text: "```xml\n<instruction>\n用户输入的代码编写要求：{{#context#}}\n代码生成助手的任务是根据用户输入的代码编写要求，生成相应的代码。请遵循以下步骤来完成任务：\n\
+            1. 仔细阅读用户的输入，理解他们需要什么样的代码。\n2. 根据用户的需求选择合适的编程语言和框架（如果用户没有指定，则可以询问或者基于上下文做出合理假设）。\n\
+            3. 编写满足要求的代码。确保代码结构清晰、易于理解，并且尽可能地遵循最佳实践。\n4. 在提供代码的同时，简要说明代码的主要功能以及如何使用它。\n\
+            5. 输出的内容不应包含任何XML标签。\n</instruction>\n\n<examples>\n<example>\n用户输入：我需要一个简单的Python脚本来读取CSV文件并打印出第一行。\n\
+            输出示例：\n这是一个简单的Python脚本，用于读取CSV文件并打印其首行内容。你需要安装pandas库才能运行这段代码。\n\n```python\n\
+            import pandas as pd\n\n# 加载数据\ndata = pd.read_csv('yourfile.csv')\n\n\
+            # 打印第一行\nprint(data.iloc[0])\n```\n\n请将'yourfile.csv'替换为你的实际文件路径。\n</example>\n\
+            \n<example>\n用户输入：创建一个JavaScript函数，该函数接收两个数字作为参数，并返回较大的那个数。\n输出示例：\n下面是一个JavaScript函数，它接受两个数字作为输入，并返回其中较大的一个。\n\
+            \n```javascript\nfunction maxOfTwoNumbers(a, b) {\n    return (a > b)\
+            \ ? a : b;\n}\n\n// 使用示例\nconsole.log(maxOfTwoNumbers(10, 20)); // 输出:\
+            \ 20\n```\n</example>\n\n<example>\n用户输入：编写一段C++代码，实现一个类，该类有一个整型成员变量和设置/获取这个变量值的方法。\n\
+            输出示例：\n这里提供了一个简单的C++类定义，包括一个私有整型成员变量及其对应的setter和getter方法。\n\n```cpp\n\
+            class MyClass {\nprivate:\n    int myValue;\n\npublic:\n    // 设置myValue的值\n\
+            \    void setValue(int value) {\n        myValue = value;\n    }\n\n \
+            \   // 获取myValue的值\n    int getValue() const {\n        return myValue;\n\
+            \    }\n};\n\n// 示例用法\nint main() {\n    MyClass obj;\n    obj.setValue(5);\n\
+            \    std::cout << \"The value is: \" << obj.getValue();\n    return 0;\n\
+            }\n```\n</example>\n</examples>\n```"
+        selected: true
+        title: LLM
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 98
+      id: '1730790449320'
+      position:
+        x: 384
+        y: 282
+      positionAbsolute:
+        x: 384
+        y: 282
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        outputs:
+        - value_selector:
+          - '1730790449320'
+          - text
+          variable: query
+        selected: false
+        title: 结束
+        type: end
+      height: 90
+      id: '1730790677704'
+      position:
+        x: 688
+        y: 282
+      positionAbsolute:
+        x: 688
+        y: 282
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    viewport:
+      x: 445.6779824453006
+      y: 259.64978553547274
+      zoom: 0.5743491774985174
